@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="YCSB\" />
+    <None Remove="Http\" />
+    <None Remove="Configuration\" />
+    <None Remove="Streaming\" />
+    <None Remove="Workload\" />
+    <None Remove="Workload\YCSB\" />
+    <None Remove="Scenario\Customer\" />
+    <None Remove="Serdes\" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Scenario\Seller\" />
+    <None Remove="Infra\" />
+    <None Remove="Entity\" />
+    <None Remove="State\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Http\" />
+    <Folder Include="Streaming\" />
+    <Folder Include="Workload\" />
+    <Folder Include="Workload\YCSB\" />
+    <Folder Include="Scenario\Customer\" />
+    <Folder Include="Serdes\" />
+    <Folder Include="Scenario\Seller\" />
+    <Folder Include="Infra\" />
+    <Folder Include="State\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <PackageReference Include="Microsoft.Orleans.Sdk" Version="7.2.1" />
+  </ItemGroup>
+</Project>

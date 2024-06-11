@@ -1,0 +1,18 @@
+[
+  {
+    "entry1": "Marketplace.Grains.OrderActor",
+    "entry2": "Marketplace.Grains.Extended.OrderActorExt"
+  },
+  {
+    "entry1": "Marketplace.Grains.StockActor",
+    "entry2": "Marketplace.Grains.Extended.StockActorExt"
+  },
+  {
+    "entry1": "Marketplace.Grains.PaymentActor",
+    "entry2": "Marketplace.Grains.Extended.PaymentActorExt"
+  },
+  {
+    "entry1": "Marketplace.Grains.ProductActor",
+    "entry2": "Marketplace.Grains.Extended.ProductActorExt"
+  }
+]

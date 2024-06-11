@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.DynamoDB" Version="7.2.1" />
+	<PackageReference Include="Microsoft.Orleans.Server" Version="7.2.1" />
+	<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
+	<PackageReference Include="Microsoft.Orleans.Transactions" Version="7.2.1" />
+	<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+	<PropertyGroup>
+		<ServerGarbageCollection>true</ServerGarbageCollection>
+		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExtendedSnapperLibrary\ExtendedSnapperLibrary.csproj" />
+    <ProjectReference Include="..\Marketplace.Grains.Extended\Marketplace.Grains.Extended.csproj" />
+    <ProjectReference Include="..\Marketplace.Grains.Orleans\Marketplace.Grains.Orleans.csproj" />
+    <ProjectReference Include="..\Marketplace.Grains.TransactionalOrleans\Marketplace.Grains.TransactionalOrleans.csproj" />
+    <ProjectReference Include="..\Marketplace.Interface.Extended\Marketplace.Interface.Extended.csproj" />
+    <ProjectReference Include="..\SnapperLibrary\SnapperLibrary.csproj" />
+	<ProjectReference Include="..\Marketplace.Interface\Marketplace.Interfaces.csproj" />
+	  <ProjectReference Include="..\Marketplace.Grains\Marketplace.Grains.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="log\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,25 @@
+{
+  "Location": "res",
+  "Plots": [
+    {
+      "$type": "Experiments.Plotting.Config.LineGraph.LineGraphPlot, Experiments",
+      "XAxis": {
+        "Label": "Nr Cores",
+        "Points": [
+          {
+            "Label": 4,
+            "Ids": [
+              1
+            ]
+          }
+        ]
+      },
+      "FileName": "avgThroughputCores",
+      "Ids": [
+        1
+      ],
+      "Name": "Average Throughput",
+      "YAxisType": "THROUGHPUT"
+    }
+  ]
+}

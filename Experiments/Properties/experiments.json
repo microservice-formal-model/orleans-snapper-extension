@@ -1,0 +1,64 @@
+{
+  "resultLocation": "res/",
+  "benchmarkControl": false,
+  "sshinfo": {
+    "ip": "13.48.72.63",
+    "username": "Administrator",
+    "password": "QLfzo-urRAa8b=m=)E;2$8=jR=lFstv."
+  },
+  "experiments": [
+    {
+      "id": 1,
+      "isLocal": true,
+	  "useAmazonDB": false,
+      "amountProducts": 1000,
+      "nrCores": 4,
+      "runtime": 20,
+      "nrActiveTransactions" :  100,
+      "generateLoad": true,
+      "distributeGeneratedLoad": false,
+      "generatedLocation": "gen/cloudExperiments/checkout5/P1000/hot0",
+      "amountScheduleCoordinators": 1,
+      "partitioning": {
+        "nStockPartitions": 64,
+        "nProductPartitions": 64,
+        "nOrderPartitions": 64,
+        "nPaymentPartitions": 64
+      },
+      "benchmarkType": "SNAPPER",
+      "distribution": {
+        "type": "HOTITEMS",
+        "zipfianConstant": 0.5,
+        "itemSets": [
+		  {
+			  "id":1,
+			  "pick": "RANGE",
+			  "items":[0,999]
+		  }
+        ],
+        "probabilities": [
+		  {
+			  "id":1,
+			  "probability":1
+		  }
+        ]
+      },
+      "checkoutInformation": {
+        "totalAmount": 16000,
+        "size": {
+          "start": 5,
+          "end": 5
+        }
+      },
+      "updateProductInformation": {
+        "totalAmount": 0,
+        "minimumReplenish": 10,
+        "maximumReplenish": 10000
+      },
+      "workersInformation": {
+        "amountCheckoutWorkers": 4,
+        "amountUpdateProductWorkers": 4
+      }
+    }
+  ]
+}

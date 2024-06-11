@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>eb0a8412-17e4-46c2-88ca-0f121eee4ba9</UserSecretsId>
+  </PropertyGroup>
+
+	<PropertyGroup>
+		<ServerGarbageCollection>true</ServerGarbageCollection>
+		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.202.3" />
+    <PackageReference Include="Bogus" Version="34.0.2" />
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Orleans.Client" Version="7.2.1" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.DynamoDB" Version="7.2.1" />
+    <PackageReference Include="Microsoft.Orleans.CodeGenerator" Version="7.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Orleans.Core" Version="7.2.1" />
+    <PackageReference Include="Microsoft.Orleans.Transactions" Version="7.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="OxyPlot.Core" Version="2.1.2" />
+    <PackageReference Include="SSH.NET" Version="2020.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExtendedSnapperLibrary\ExtendedSnapperLibrary.csproj" />
+    <ProjectReference Include="..\Marketplace.Grains.Extended\Marketplace.Grains.Extended.csproj" />
+    <ProjectReference Include="..\Marketplace.Grains.Orleans\Marketplace.Grains.Orleans.csproj" />
+    <ProjectReference Include="..\Marketplace.Grains.TransactionalOrleans\Marketplace.Grains.TransactionalOrleans.csproj" />
+    <ProjectReference Include="..\Marketplace.Grains\Marketplace.Grains.csproj" />
+    <ProjectReference Include="..\Marketplace.Interface\Marketplace.Interfaces.csproj" />
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
