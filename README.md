@@ -29,7 +29,8 @@ The values in the configuration file are listed below:
 #### Prerequesites
 - (1) Clone the repository 
 - (2) This project needs the latest .NET version installed. You can find the installation file [here](https://dotnet.microsoft.com/en-us/).
-
+- (3) Setting up Environment variable `esnapper`: This project requires an environment variable to be set to the root of the repository. 
+      Add to your system variables a variable named `esnapper` with location: `.../orleans-snapper-extension/`.
 #### Starting the Server for Snapper 
 In a PowerShell Window, navigate to the repository. The server can be started by using the `dotnet run --project SnapperServer` command.
 It is possible to state several options when starting the server, they are listed below:
@@ -44,6 +45,12 @@ Example: The server can be started for the extended benchmark on 8 cores with 1 
 ```
 dotnet run --project SnapperServer --cpu 8 --extended --numScheduleCoord 1 --batchSize 50 -l
 ```
+
+#### Starting the Experiment
+The Experiment can be started by using the command `dotnet run --project Experiment` in a PowerShell located in the root of the repository.
+
+The configuration file for the experiments is located in `Properties/experiments.json`. We included a set of pregenerated workloads in the `/gen` directory.
+Make sure to choose the fitting workload with your server. A workload for benchmark *snapper* will not work with a server started for *extended*. 
 
 
 
