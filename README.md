@@ -84,7 +84,7 @@ The configuration for the experiments is found in `gen/experiments.json`. We hav
   ]
 }
 ```
-The config contains relevant information about the experiment. In order to change the experiment to another pre generated payload, you need to change this config in the following way:
+The config contains relevant information about the experiment. In order to change the experiment to another pre generated transaction workload, you need to change this config in the following way:
 - (1) Change `experiment.nrCores` to desired amount
 - (2) Adjust the `experiment.runtime` to the desired time in seconds that the experiment should execute
 - (3) Choose the desired workload folder in `experiment.generatedLocation`
@@ -104,6 +104,8 @@ Starting the experiment will look like this:
 dotnet run --project Experiment
 ```
 ![image](https://github.com/microservice-formal-model/orleans-snapper-extension/assets/172083713/3268c189-33aa-41f7-92b8-9de64ff90353)
+
+The Power Shell Window running the experiment will state the result of the experiment. In our example `Average Latency: 85 ms` states the average latency for the whole runtime of the experiment, and likewise `Average Throughput: 18415 Tr/sec` the average throughput.
 
 **!!Please note that this performs the experiments on the local machine, to get the results from the paper it is required to start the experiments on the Amazon instance as described in the paper!!**
 
