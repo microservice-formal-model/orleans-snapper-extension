@@ -17,6 +17,8 @@ namespace Experiments.Execution.Result
         {
             ExperimentID = experiment.Id;
             BenchmarkType = experiment.BenchmarkType;
-        }   
+        }
+
+        public abstract void PrintResult();
     }
 }

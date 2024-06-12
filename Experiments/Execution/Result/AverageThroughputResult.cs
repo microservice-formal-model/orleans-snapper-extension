@@ -16,5 +16,10 @@ namespace Experiments.Execution.Result
             this.TransactionsPerSecond = TransactionsPerSecond;
 
         }
+
+        public override void PrintResult()
+        {
+            Console.WriteLine($"Average Throughput: {TransactionsPerSecond} Tr/sec");
+        }
     }
 }

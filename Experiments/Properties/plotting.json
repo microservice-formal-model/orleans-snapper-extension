@@ -7,7 +7,7 @@
         "Label": "Nr Cores",
         "Points": [
           {
-            "Label": 4,
+            "Label": 8,
             "Ids": [
               1
             ]
@@ -16,7 +16,7 @@
       },
       "FileName": "avgThroughputCores",
       "Ids": [
-        1
+        8
       ],
       "Name": "Average Throughput",
       "YAxisType": "THROUGHPUT"

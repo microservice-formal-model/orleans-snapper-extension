@@ -43,7 +43,6 @@ namespace Experiments.Execution.Latency
             }
             //Console.WriteLine("Total time of all operations: " + sumOfLatencies[currentIndex]);
             //Console.WriteLine("Total amount of operations: " + nrOperations);
-            Console.WriteLine("Total latency: " + total);
             return new AverageLatencyResult(total, experiment);
         }
     }

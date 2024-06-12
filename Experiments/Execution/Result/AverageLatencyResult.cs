@@ -15,5 +15,10 @@ namespace Experiments.Execution.Result
         {
             this.AverageLatency = AverageLatency;
         }
+
+        public override void PrintResult()
+        {
+            Console.WriteLine($"Average Latency: {AverageLatency} ms");
+        }
     }
 }

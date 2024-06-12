@@ -203,8 +203,11 @@ if (experimentSet != null)
             var latencyResult = await experimentExecuter.ReceiveLatencyResult();
             var throuputResult = await experimentExecuter.ReceiveThroughputResult();
 
-            results.Add(latencyResult.GetResult(experiment));
-            results.Add(throuputResult.GetResult(experiment));
+            latencyResult.GetResult(experiment).PrintResult();
+            throuputResult.GetResult(experiment).PrintResult();
+
+            //results.Add(latencyResult.GetResult(experiment));
+            //results.Add(throuputResult.GetResult(experiment));
         }
 
         stopWatch.Stop();
@@ -226,6 +229,7 @@ if (experimentSet != null)
     //Delete the last instance of the experiments
     await DeleteDynamoDBInstance();
     
+    /*
     if(plts != null)
     {
         //Create the directory for the results
@@ -244,9 +248,10 @@ if (experimentSet != null)
             serializer.Serialize(jw, jsonPlot);
         }
     }
+    */
 }
 
 static async Task DeleteDynamoDBInstance()
 {
-    return Task.CompletedTask;
+    await Task.CompletedTask;
 }
