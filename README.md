@@ -40,7 +40,7 @@ The Experiment can be started by using the command `dotnet run --project Experim
 We included the set of pregenerated workloads used in the paper in the `/gen` directory. It is important to match the pregenerated file with the correct benchmark version and cpu amount. The folder name indicates the benchmark version and cpu amount.
 For example `Experiments/gen/core8extended` is meant to be used with an experiment for 8 cores and the extended benchmark.
 
-The configuration for the experiments is found in `gen/experiments.json`. We have included the execution for an experiment for the Extended (E-Snapper) Benchmark using 8 cores, it looks like this:
+The configuration for the experiments is found in `Experiments/Properties/experiments.json`. We have included the execution for an experiment for the Extended (E-Snapper) Benchmark using 8 cores, it looks like this:
 ```json
 {
   "resultLocation": "res/",
