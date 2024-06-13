@@ -49,7 +49,6 @@ namespace Experiments
                             Console.WriteLine("using the amazon db configuration to access.");
                             Action<DynamoDBGatewayOptions> dynamoOptions = options =>
                             {
-                                options.Service = "eu-north-1";
                             };
                             return new HostBuilder()
                                 .UseOrleansClient(
