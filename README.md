@@ -9,6 +9,10 @@ The source code for actors for Benchmarks (1) ESnapper, (2) Orleans Transactions
 - (2) `Marketplace.Grains.TransactionOrleans`
 - (3) `Marketplace.Grains`
 
+### Schedule Coordinator
+
+Source Code for scalable schedule coordinator actor can be found in `ExtendedSnapperLibrary.Actor.ScheduleCoordinator`.
+
 ## Running the Experiment
 #### Prerequesites
 - (1) Clone the repository 
