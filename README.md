@@ -14,6 +14,15 @@ The source code for actors for Benchmarks (1) ESnapper, (2) Orleans Transactions
 Source Code for scalable schedule coordinator actor can be found in `ExtendedSnapperLibrary.Actor.ScheduleCoordinator`.
 
 ## Running the Experiment
+### Configuration
+The configuration for executing an experiment can be found in `Properties/experiment.json`. We summarize here the values that needs to be adjusted.
+An exemplary configuration can be found in section *Running the Experiment - On Local Machine - Starting the Experiment*. To alter between experiments, use this exemplary configuration file as a base and only adjust the values stated below.
+|Experiment|Configuration|
+|--|--|
+|Scalability - 4 cores| `"amountProducts":1000`,`"nrCores":4`,`"generatedLocation":"gen/cloudExperimentLoad/core4(extended/snapper)"`,`"amountScheduleCoordinators":1`,`"partitioning":{"nStockPartitions": 16,"nProductPartitions": 16,"nOrderPartitions": 16,"nPaymentPartitions": 16}`,`"benchmarkType": "EXTENDED"/"SNAPPER"`,`"workersInformation": {"amountCheckoutWorkers": 2,"amountUpdateProductWorkers": 2}`|
+|Scalability - 8 cores|`"amountProducts":1000`,`"nrCores":4`,`"generatedLocation":"gen/cloudExperimentLoad/core8(extended/snapper)"`,`"amountScheduleCoordinators":2`,`"partitioning":{"nStockPartitions": 32,"nProductPartitions": 32,"nOrderPartitions": 32,"nPaymentPartitions": 32}`,`"benchmarkType": "EXTENDED"/"SNAPPER"`,`"workersInformation": {"amountCheckoutWorkers": 4,"amountUpdateProductWorkers": 4}`|
+|Scalability - 12 cores|`"amountProducts":1000`,`"nrCores":4`,`"generatedLocation":"gen/cloudExperimentLoad/core16(extended/snapper)"`,`"amountScheduleCoordinators":2`,`"partitioning":{"nStockPartitions": 64,"nProductPartitions": 64,"nOrderPartitions": 64,"nPaymentPartitions": 64}`,`"benchmarkType": "EXTENDED"/"SNAPPER"`,`"workersInformation": {"amountCheckoutWorkers": 4,"amountUpdateProductWorkers": 4}`|
+|Scalability - 16 cores|`"amountProducts":1000`,`"nrCores":4`,`"generatedLocation":"gen/cloudExperimentLoad/core16(extended/snapper)"`,`"amountScheduleCoordinators":4`,`"partitioning":{"nStockPartitions": 64,"nProductPartitions": 64,"nOrderPartitions": 64,"nPaymentPartitions": 64}`,`"benchmarkType": "EXTENDED"/"SNAPPER"`,`"workersInformation": {"amountCheckoutWorkers": 8,"amountUpdateProductWorkers": 8}`|
 ### On Local Machine
 #### Prerequesites
 - (1) Clone the repository 
