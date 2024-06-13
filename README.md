@@ -110,8 +110,9 @@ The configuration for the experiments is found in `Experiments/Properties/experi
     }
   ]
 }
-**Note that information in attribute `experiment.distribution` is only used when generating a new workload. For recreating the experiments we included all the workloads already. This is indicated by the `generateLoad:false` property** 
 ```
+**Note that information in attribute `experiment.distribution` is only used when generating a new workload. For recreating the experiments we included all the workloads already. This is indicated by the `generateLoad:false` property** 
+
 Section *Running the Experiment - Configuration* contains information about configuration for each experiment. 
 
 When starting the experiment, the server should already be running configured to the expected experiment. 
