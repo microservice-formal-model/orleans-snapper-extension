@@ -4,31 +4,54 @@
   "experiments": [
     {
       "id": 1,
-      "isLocal": false,
-	  "useAmazonDB": false,
+      "isLocal": true,
+      "useAmazonDB": false,
       "amountProducts": 1000,
-	  "amountScheduleCoordinators":1,
-      "nrCores": 8,
-      "runtime": 15,
+      "nrCores": 16,
+      "runtime": 30,
+      "nrActiveTransactions" :  200,
       "generateLoad": false,
       "distributeGeneratedLoad": true,
-      "generatedLocation": "gen/core8extended",
+      "generatedLocation": "gen/checkout5/P1000/hot07/esnapper",
+      "amountScheduleCoordinators": 8,
       "partitioning": {
-        "nStockPartitions": 8,
-        "nProductPartitions": 8,
-        "nOrderPartitions": 8,
-        "nPaymentPartitions": 8
+        "nStockPartitions": 64,
+        "nProductPartitions": 64,
+        "nOrderPartitions": 64,
+        "nPaymentPartitions": 64
       },
       "benchmarkType": "EXTENDED",
       "distribution": {
         "type": "UNIFORM",
-        "zipfianConstant": 0.3
+        "zipfianConstant": 0.5,
+        "itemSets": [
+          {
+            "id": 0,
+            "pick": "INDIVIDUAL",
+            "items": [ 0, 1, 2, 3, 4 ]
+          },
+          {
+            "id": 1,
+            "pick": "RANGE",
+            "items": [ 5, 999 ]
+          }
+        ],
+        "probabilities": [
+          {
+            "id": 0,
+            "probability": 0.3
+          },
+          {
+            "id": 1,
+            "probability": 0.7
+          }
+        ]
       },
       "checkoutInformation": {
         "totalAmount": 16000,
         "size": {
-          "start": 1,
-          "end": 10
+          "start": 5,
+          "end": 5
         }
       },
       "updateProductInformation": {
@@ -37,8 +60,8 @@
         "maximumReplenish": 10000
       },
       "workersInformation": {
-        "amountCheckoutWorkers": 4,
-        "amountUpdateProductWorkers": 4
+        "amountCheckoutWorkers": 8,
+        "amountUpdateProductWorkers": 0
       }
     }
   ]
