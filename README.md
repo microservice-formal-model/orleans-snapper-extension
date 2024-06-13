@@ -50,9 +50,9 @@ It is possible to state several options when starting the server, they are liste
 - `--batchSize` : When running the `--extended` version, controls the size of collected transaction before emitted to the system. default: 100.
 - `--numScheduleCoord`: Number of Schedule Coordinators, default: 1.
 - 
-Example: The server can be started for the extended benchmark on 8 cores with 1 schedule coordinator and a batchSize of 50, locally like this:
+Example: The server can be started for the extended benchmark on 16 cores with 4 schedule coordinator and a batchSize of 50, locally like this:
 ```
-dotnet run --project SnapperServer --cpu 8 --extended --numScheduleCoord 1 --batchSize 50 -l
+dotnet run --project SnapperServer --cpu 16 --extended --numScheduleCoord 4 --batchSize 50 -l
 ```
 
 #### Starting the Experiment
@@ -60,7 +60,7 @@ The Experiment can be started by using the command `dotnet run --project Experim
 
 We included the set of pregenerated workloads used in the paper in the `/gen` directory. A table explaining the settings for each experiments and which folder to use can be found in this README in section *Running the Experiment - Configuration* It is important to match the pregenerated file with the correct benchmark version and cpu amount. 
 
-The configuration for the experiments is found in `Experiments/Properties/experiments.json`. We have included the execution for a hotset experiment for the Extended (E-Snapper) Benchmark using 8 cores, it looks like this:
+The configuration for the experiments is found in `Experiments/Properties/experiments.json`. We have included the execution for a hotset experiment for the Extended (E-Snapper) Benchmark using 16 cores, it looks like this:
 ```json
 {
   "resultLocation": "res/",
