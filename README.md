@@ -127,7 +127,8 @@ Starting the experiment will look like this:
 ```
 dotnet run --project Experiment
 ```
-![image](https://github.com/microservice-formal-model/orleans-snapper-extension/assets/172083713/3268c189-33aa-41f7-92b8-9de64ff90353)
+![image](https://github.com/microservice-formal-model/orleans-snapper-extension/assets/172083713/84d99f4d-7251-4c2b-84b2-67120bf86ace)
+
 
 The Power Shell Window running the experiment will state the result of the experiment. In our example `Average Latency: 85 ms` states the average latency for the whole runtime of the experiment, and likewise `Average Throughput: 18415 Tr/sec` the average throughput.
 
