@@ -23,7 +23,6 @@ var options = Parser.Default
 
 Action<DynamoDBClusteringOptions> dynamoOptions = options =>
 {
-    options.Service = "eu-north-1";
 };
 
 var hostBuilder = () =>
