@@ -14,6 +14,7 @@ The source code for actors for Benchmarks (1) ESnapper, (2) Orleans Transactions
 Source Code for scalable schedule coordinator actor can be found in `ExtendedSnapperLibrary.Actor.ScheduleCoordinator`.
 
 ## Running the Experiment
+### On Local Machine
 #### Prerequesites
 - (1) Clone the repository 
 - (2) This project needs the latest .NET version installed. You can find the installation file [here](https://dotnet.microsoft.com/en-us/).
@@ -37,10 +38,9 @@ dotnet run --project SnapperServer --cpu 8 --extended --numScheduleCoord 1 --bat
 #### Starting the Experiment
 The Experiment can be started by using the command `dotnet run --project Experiment` in a PowerShell located in the root of the repository.
 
-We included the set of pregenerated workloads used in the paper in the `/gen` directory. It is important to match the pregenerated file with the correct benchmark version and cpu amount. The folder name indicates the benchmark version and cpu amount.
-For example `Experiments/gen/core8extended` is meant to be used with an experiment for 8 cores and the extended benchmark.
+We included the set of pregenerated workloads used in the paper in the `/gen` directory. A table explaining the settings for each experiments and which folder to use can be found in this README in section *Running the Experiment - Configuration* It is important to match the pregenerated file with the correct benchmark version and cpu amount. 
 
-The configuration for the experiments is found in `Experiments/Properties/experiments.json`. We have included the execution for an experiment for the Extended (E-Snapper) Benchmark using 8 cores, it looks like this:
+The configuration for the experiments is found in `Experiments/Properties/experiments.json`. We have included the execution for a hotset experiment for the Extended (E-Snapper) Benchmark using 8 cores, it looks like this:
 ```json
 {
   "resultLocation": "res/",
@@ -48,31 +48,54 @@ The configuration for the experiments is found in `Experiments/Properties/experi
   "experiments": [
     {
       "id": 1,
-      "isLocal": false,
-	  "useAmazonDB": false,
+      "isLocal": true,
+      "useAmazonDB": false,
       "amountProducts": 1000,
-      "amountScheduleCoordinators":1,
-      "nrCores": 8,
-      "runtime": 15,
+      "nrCores": 16,
+      "runtime": 30,
+      "nrActiveTransactions" :  200,
       "generateLoad": false,
       "distributeGeneratedLoad": true,
-      "generatedLocation": "gen/core8extended",
+      "generatedLocation": "gen/checkout5/P1000/hot07/esnapper",
+      "amountScheduleCoordinators": 8,
       "partitioning": {
-        "nStockPartitions": 8,
-        "nProductPartitions": 8,
-        "nOrderPartitions": 8,
-        "nPaymentPartitions": 8
+        "nStockPartitions": 64,
+        "nProductPartitions": 64,
+        "nOrderPartitions": 64,
+        "nPaymentPartitions": 64
       },
       "benchmarkType": "EXTENDED",
       "distribution": {
         "type": "UNIFORM",
-        "zipfianConstant": 0.3
+        "zipfianConstant": 0.5,
+        "itemSets": [
+          {
+            "id": 0,
+            "pick": "INDIVIDUAL",
+            "items": [ 0, 1, 2, 3, 4 ]
+          },
+          {
+            "id": 1,
+            "pick": "RANGE",
+            "items": [ 5, 999 ]
+          }
+        ],
+        "probabilities": [
+          {
+            "id": 0,
+            "probability": 0.3
+          },
+          {
+            "id": 1,
+            "probability": 0.7
+          }
+        ]
       },
       "checkoutInformation": {
         "totalAmount": 16000,
         "size": {
-          "start": 1,
-          "end": 10
+          "start": 5,
+          "end": 5
         }
       },
       "updateProductInformation": {
@@ -81,28 +104,24 @@ The configuration for the experiments is found in `Experiments/Properties/experi
         "maximumReplenish": 10000
       },
       "workersInformation": {
-        "amountCheckoutWorkers": 4,
-        "amountUpdateProductWorkers": 4
+        "amountCheckoutWorkers": 8,
+        "amountUpdateProductWorkers": 0
       }
     }
   ]
 }
+**Note that information in attribute `experiment.distribution` is only used when generating a new workload. For recreating the experiments we included all the workloads already. This is indicated by the `generateLoad:false` property** 
 ```
-The config contains relevant information about the experiment. In order to change the experiment to another pre generated transaction workload, you need to change this config in the following way:
-- (1) Change `experiment.nrCores` to desired amount
-- (2) Adjust the `experiment.runtime` to the desired time in seconds that the experiment should execute
-- (3) Choose the desired workload folder in `experiment.generatedLocation`
-- (4) Adjust the partitioning of all 4 actor types similarily as stated in the paper (4 cores -> 4 partitions, 8 cores -> 8 partitions, 16 cores -> 16 partitions) NOTE: This needs to be accurate, otherwise the experiment will not transmit transactions correctly
-- (5) Change `experiment.benchmarkType` field to the desired benchmark ("SNAPPER","EXTENDED","TRANSACTIONS")
-- (6) Change or leave `workersInformation.*` field expressing worker amount of client workers transmitting update product or checkout transactions (needs to be a power of 2)
+Section *Running the Experiment - Configuration* contains information about configuration for each experiment. 
 
 When starting the experiment, the server should already be running configured to the expected experiment. 
 
-For the example with 8 cores, EXTENDED, 8 partitions, starting the server looks like this:
+For our example with 16 cores, EXTENDED, 64 partitions, starting the server looks like this:
 ```
-dotnet run --project SnapperServer --cpu 8 --extended --numScheduleCoord 1 --batchSize 50 -l
+dotnet run --project SnapperServer --cpu 16 --extended --numScheduleCoord 8 --batchSize 20 -l
 ```
-![image](https://github.com/microservice-formal-model/orleans-snapper-extension/assets/172083713/71b2096e-a977-42a4-99d4-fe600396ed4b)
+![image](https://github.com/microservice-formal-model/orleans-snapper-extension/assets/172083713/5bee9e70-a036-4e64-a595-2750c1d6d921)
+
 Starting the experiment will look like this:
 ```
 dotnet run --project Experiment
@@ -111,6 +130,49 @@ dotnet run --project Experiment
 
 The Power Shell Window running the experiment will state the result of the experiment. In our example `Average Latency: 85 ms` states the average latency for the whole runtime of the experiment, and likewise `Average Throughput: 18415 Tr/sec` the average throughput.
 
-**!!Please note that this performs the experiments on the local machine, to get the results from the paper it is required to start the experiments on the Amazon instance as described in the paper!!**
+**!!Please note that this performs the experiments on the local machine, to get the results from the paper it is required to start the experiments on the Amazon instance as described in the next section!!**
 
+### On Amazon Cloud
+#### Prerequesites
+- (1) Two Amazon instances (for the experiment in the paper, we used 2x c5.9xlarge) that are in the same *Placement Group*. 
+- (2) Access to a DynamoDB Table is required. This will maintain the Orleans Cluster.
+- (3) Clone the project on both instances 
+- (4) Both instances need to have an environment variable named `esnapper` that points to the root directory of the repository.
+- (5)  On the experiment machine, go to the .cs-file located in `Experiments/OrleansClientManager.cs`. Alter the Source Code by adding your secret information to the `DynamoDBGatewayOptions`.
+  ```csharp
+  Action<DynamoDBGatewayOptions> dynamoOptions = options =>
+  {
+  	options.Service = yourRegion;
+  	options.AccessKey = yourAccessKey;
+  	options.SecretKey = yourSecretKey;
+  }; 
+  ```   		 
+- (6) On the server machine, go to the .cs-file located in `SnapperServer/Program.cs`. Alter the Source Code by adding your secret information to the `DynamoDBGatewayOptions`.
+  ```
+  Action<DynamoDBClusteringOptions> dynamoOptions = options =>
+  {
+      options.AccessKey = yourAccessKey;
+      options.SecretKey = youSecretKey;
+      options.Service = yourRegion;
+  };
+  ```
+- On your server machine, from the root repository create the directory `bin/Release/net7.0/Properties/`. In this directory create a file `server-config.json` containing the public ip address of your server.
+  ```json
+  {
+    "pubIP": yourIp
+  }
+  ```
+#### Starting the Server
+Start the server according to the experiment demands as described in the section about starting the experiments locally. 
+The only thing you need to alter is removing the `-l` flag from the dotnet start command.
 
+In the Amazon Cloud the source code for altering the number of CPUs does not work. This is due to the settings of the virtual machine.
+In order to change the number of cpus, it is required to go into the TaskManager, find the process of the dotnet execution and change the amount of cores there manually.
+A guide on how to do this can be found [here](https://superuser.com/questions/309617/how-to-limit-a-process-to-a-single-cpu-core). We summarize the steps:   
+  - Press Ctrl + Shift + Esc to get open Task Manager.
+  - Click on the Processes tab.
+  - Find the process that needs its processor affinity changed.
+  - Right-click on the process.
+  - Click on "Set Affinity".
+#### Starting the Experiments
+The experiments can be started as explained in the local section, however the `experiments.json` configuration file needs to set the values `"useAmazonDB":true`, and `"isLocal":false`.
